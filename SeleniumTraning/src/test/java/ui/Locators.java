@@ -1,0 +1,46 @@
+package ui;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.locators.RelativeLocator;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Locators {
+
+	public static String browser = "Chrome"; //External configuration
+	public static WebDriver driver;
+
+	public static void main(String[] args) {
+
+		if (browser.equals("Chrome")) {
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+		} 
+		else if (browser.equals("Firefox")) {
+			WebDriverManager.firefoxdriver().setup();
+			driver = new FirefoxDriver();
+		}
+
+//		driver.get("https://saucedemo.com/");
+//		driver.findElement(By.id("user-name")).sendKeys("standard_user");
+//		driver.findElement(By.cssSelector("#user-name")).sendKeys("standard_user");
+//		driver.findElement(By.xpath("//*[@id=\"user-name\"]")).sendKeys("standard_user");
+//		driver.findElement(By.tagName("input")).sendKeys("standard_user");
+//		driver.get("https://www.selenium.dev/documentation/webdriver/getting_started/");
+//		driver.findElement(By.linkText("Install Library")).click();
+//		driver.findElement(By.partialLinkText("Install")).click();
+		
+		driver.get("https://saucedemo.com/");
+		WebElement password = driver.findElement(By.id("password"));
+		driver.findElement(RelativeLocator.with(By.tagName("input")).above(password)).sendKeys("standa");
+		
+		
+
+
+	}
+
+}
